@@ -1,10 +1,10 @@
-package dao;
+package service;
 
 import java.util.List;
 
 import pojo.RequestPojo;
 
-public interface RequestDao {
+public interface RequestService {
 	//view all request doesnt matter of the status
 	List<RequestPojo> viewAllRequest();
 	

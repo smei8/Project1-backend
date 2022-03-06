@@ -4,20 +4,20 @@ public class RequestPojo {
 
 	private int reqId;
 	private int ep;
-	private String reqType;
+	private int reqType;
 	private int reqAmount;
 	private String submitDate;
 	private String approveDate;
 	private int manager;
-	private String reqStatus;
+	private int reqStatus;
 	
 	public RequestPojo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public RequestPojo(int reqId, int ep, String reqType, int reqAmount, String submitDate, String approveDate,
-			String reqStatus) {
+	public RequestPojo(int reqId, int ep, int reqType, int reqAmount, String submitDate, String approveDate,
+			int reqStatus) {
 		super();
 		this.reqId = reqId;
 		this.ep = ep;
@@ -28,8 +28,8 @@ public class RequestPojo {
 		this.reqStatus = reqStatus;
 	}
 
-	public RequestPojo(int reqId, int ep, String reqType, int reqAmount, String submitDate, String approveDate,
-			int manager, String reqStatus) {
+	public RequestPojo(int reqId, int ep, int reqType, int reqAmount, String submitDate, String approveDate,
+			int manager, int reqStatus) {
 		super();
 		this.reqId = reqId;
 		this.ep = ep;
@@ -57,11 +57,11 @@ public class RequestPojo {
 		this.ep = ep;
 	}
 
-	public String getReqType() {
+	public int getReqType() {
 		return reqType;
 	}
 
-	public void setReqType(String reqType) {
+	public void setReqType(int reqType) {
 		this.reqType = reqType;
 	}
 
@@ -97,11 +97,11 @@ public class RequestPojo {
 		this.manager = manager;
 	}
 
-	public String getReqStatus() {
+	public int getReqStatus() {
 		return reqStatus;
 	}
 
-	public void setReqStatus(String reqStatus) {
+	public void setReqStatus(int reqStatus) {
 		this.reqStatus = reqStatus;
 	}
 
