@@ -38,6 +38,17 @@ public class ExpenseMain {
 			ctx.json(returnedUpdatedAccount);
 		});
 		
+		//login
+		myServer.post("/api/login", (ctx) -> {
+			// there is an incoming book json in the request body, fetching the request body
+			// and storing it in newBook
+			UserPojo newreq = ctx.bodyAsClass(UserPojo.class);
+
+			// call the service
+			UserPojo userGotFromDB = userService.login(newreq);
+			ctx.json(userGotFromDB);
+		});
+		
 /*-----------------------------------------------------------------------------------------------------------*/		
 		// Request
 		// viewAllRequest
@@ -61,7 +72,7 @@ public class ExpenseMain {
 		
 		// reviewRequest
 		myServer.put("/api/requests/{bid1}/{bid2}", ctx -> { //1-reqID 2-status
-			RequestPojo updateStatus = ctx.bodyAsClass(RequestPojo.class);
+			//RequestPojo updateStatus = ctx.bodyAsClass(RequestPojo.class);
 			String reqId = ctx.pathParam("bid1"); //reqID
 			String status = ctx.pathParam("bid2"); //status
 			RequestPojo returnedUpdatedRequest = requestService.reviewRequest(Integer.parseInt(reqId), Integer.parseInt(status));

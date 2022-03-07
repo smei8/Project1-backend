@@ -96,20 +96,20 @@ public class ErsTest {
 		int oldstatus = 0;
 		List<RequestPojo> allPending = requestService.viewPendingRequest();
 		
-		
 		Iterator<RequestPojo> itr = allPending.iterator();
 		while(itr.hasNext()) {
 			RequestPojo reqPojo = itr.next();
 			oldstatus = reqPojo.getReqStatus();
 		}
 		
+		
 		System.out.println("Enter req id you would like to approve/denie: ");
 		int reqId = scan.nextInt();
-		
+
 		System.out.println("Approve or Denie (2/3): ");
 		int newStatus = scan.nextInt();
-		
-		RequestPojo fetchedPending = requestService.reviewRequest(reqId, newStatus);
+
+		//RequestPojo fetchedPending = requestService.reviewRequest(RequestrequestPojo);
 
 		//System.out.println("Account updated successfully!");
 //		

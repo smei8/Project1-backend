@@ -29,4 +29,9 @@ public class UserServiceImpl implements UserService {
 	public UserPojo updateAccount(UserPojo userpojo) {
 		return userDao.updateAccount(userpojo);
 	}
+
+	@Override
+	public UserPojo login(UserPojo user) {
+		return userDao.login(user);
+	}
 }
