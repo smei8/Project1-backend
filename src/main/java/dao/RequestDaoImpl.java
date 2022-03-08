@@ -24,7 +24,7 @@ public class RequestDaoImpl implements RequestDao {
 			ResultSet rs = stmt.executeQuery(query);
 			while (rs.next()) {
 				RequestPojo requestPojo = new RequestPojo(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4),
-						rs.getString(5), rs.getString(6), rs.getInt(7));
+						rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
 				allRequests.add(requestPojo);
 			}
 
@@ -42,9 +42,8 @@ public class RequestDaoImpl implements RequestDao {
 
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "INSERT INTO request_details(user_id, type, request_amount, manager, status) VALUES("
-					+ requestPojo.getEp() + "," + requestPojo.getReqType() + "," + requestPojo.getReqAmount() + ",'"
-					+ requestPojo.getManager() + "'," + requestPojo.getReqStatus() + ") RETURNING req_id";
+			String query = "INSERT INTO request_details(user_id, type, request_amount, status) VALUES("
+					+ requestPojo.getuserId() + "," + requestPojo.getReqType() + "," + requestPojo.getReqAmount()+",1) RETURNING req_id";
 			
 			ResultSet rs = stmt.executeQuery(query);
 			if (rs.next()) {
@@ -116,7 +115,7 @@ public class RequestDaoImpl implements RequestDao {
 			ResultSet rs = stmt.executeQuery(query);
 			if (rs.next()) {
 				reqPojo = new RequestPojo(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getInt(4), rs.getString(5),
-						rs.getString(6), rs.getInt(7));
+						rs.getString(6), rs.getInt(7), rs.getInt(8));
 			}
 
 		} catch (SQLException e) {

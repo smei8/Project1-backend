@@ -5,6 +5,7 @@ import java.util.List;
 import pojo.UserPojo;
 
 public interface UserDao {
+	
 	List<UserPojo> fetchAllAccounts();
 	
 	UserPojo fetchAAccount(int userId);
@@ -12,4 +13,6 @@ public interface UserDao {
 	UserPojo updateAccount(UserPojo userpojo);
 	
 	UserPojo login(UserPojo user);
+	
+	
 }

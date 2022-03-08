@@ -28,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 				userpojo.setUsername(rs.getString(2));
 				userpojo.setFullName(rs.getString(4));
 				userpojo.setEmail(rs.getString(5));
+				userpojo.setRole_id(6);
 				allEmployees.add(userpojo);
 			}
 		} catch (SQLException e) {
