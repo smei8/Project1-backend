@@ -18,7 +18,11 @@ public class ErsTest {
 		Scanner scan = new Scanner(System.in);
 		UserService userService = new UserServiceImpl();
 		RequestService requestService = new RequestServiceImpl();
-		
+		UserPojo userlogin = new UserPojo();
+		userlogin.setUsername("bruno");
+		userlogin.setPassword("1234");
+		userlogin.setRole_id(1);
+		userService.login(userlogin);
 //		System.out.println("*********************************************************************************************************");
 //		System.out.println("This is fetch all employee account");
 //		
@@ -91,23 +95,23 @@ public class ErsTest {
 ////		scan.nextLine();
 ////		userService.updateAccount(fetchOldAcc);
 //		System.out.println("Account updated successfully!");
-		System.out.println("*********************************************************************************************************");
-		System.out.println("List of all pending request");
-		int oldstatus = 0;
-		List<RequestPojo> allPending = requestService.viewPendingRequest();
-		
-		Iterator<RequestPojo> itr = allPending.iterator();
-		while(itr.hasNext()) {
-			RequestPojo reqPojo = itr.next();
-			oldstatus = reqPojo.getReqStatus();
-		}
-		
-		
-		System.out.println("Enter req id you would like to approve/denie: ");
-		int reqId = scan.nextInt();
-
-		System.out.println("Approve or Denie (2/3): ");
-		int newStatus = scan.nextInt();
+//		System.out.println("*********************************************************************************************************");
+//		System.out.println("List of all pending request");
+//		int oldstatus = 0;
+//		List<RequestPojo> allPending = requestService.viewPendingRequest();
+//		
+//		Iterator<RequestPojo> itr = allPending.iterator();
+//		while(itr.hasNext()) {
+//			RequestPojo reqPojo = itr.next();
+//			oldstatus = reqPojo.getReqStatus();
+//		}
+//		
+//		
+//		System.out.println("Enter req id you would like to approve/denie: ");
+//		int reqId = scan.nextInt();
+//
+//		System.out.println("Approve or Denie (2/3): ");
+//		int newStatus = scan.nextInt();
 
 		//RequestPojo fetchedPending = requestService.reviewRequest(RequestrequestPojo);
 

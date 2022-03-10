@@ -7,13 +7,21 @@ public class RequestPojo {
 	private int reqType;
 	private int reqAmount;
 	private String submitDate;
-	private String approveDate;
+	private String approvedDate;
 	private int manager;
 	private int reqStatus;
 	
 	public RequestPojo() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public RequestPojo(int userId, int reqType, int reqAmount, int manager) {
+		super();
+		this.userId = userId;
+		this.reqType = reqType;
+		this.reqAmount = reqAmount;
+		this.manager = manager;
 	}
 
 	public RequestPojo(int reqId, int userId, int reqType, int reqAmount, String submitDate, int reqStatus) {
@@ -26,7 +34,7 @@ public class RequestPojo {
 		this.reqStatus = reqStatus;
 	}
 
-	public RequestPojo(int reqId, int userId, int reqType, int reqAmount, String submitDate, String approveDate,
+	public RequestPojo(int reqId, int userId, int reqType, int reqAmount, String submitDate, String approvedDate,
 			int manager, int reqStatus) {
 		super();
 		this.reqId = reqId;
@@ -34,7 +42,7 @@ public class RequestPojo {
 		this.reqType = reqType;
 		this.reqAmount = reqAmount;
 		this.submitDate = submitDate;
-		this.approveDate = approveDate;
+		this.approvedDate = approvedDate;
 		this.manager = manager;
 		this.reqStatus = reqStatus;
 	}
@@ -79,12 +87,12 @@ public class RequestPojo {
 		this.submitDate = submitDate;
 	}
 
-	public String getApproveDate() {
-		return approveDate;
+	public String getapprovedDate() {
+		return approvedDate;
 	}
 
-	public void setApproveDate(String approveDate) {
-		this.approveDate = approveDate;
+	public void setapprovedDate(String approvedDate) {
+		this.approvedDate = approvedDate;
 	}
 
 	public int getManager() {
@@ -106,7 +114,7 @@ public class RequestPojo {
 	@Override
 	public String toString() {
 		return "RequestPojo [reqId=" + reqId + ", userId=" + userId + ", reqType=" + reqType + ", reqAmount=" + reqAmount
-				+ ", submitDate=" + submitDate + ", approveDate=" + approveDate + ", manager=" + manager
+				+ ", submitDate=" + submitDate + ", approvedDate=" + approvedDate + ", manager=" + manager
 				+ ", reqStatus=" + reqStatus + "]";
 	}
 }

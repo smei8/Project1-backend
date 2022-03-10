@@ -57,6 +57,13 @@ public class ExpenseMain {
 			ctx.json(allRequests); 
 		});
 		
+		// fetchARequest
+		myServer.get("/api/requests/{bid}", ctx -> {
+			String reqId = ctx.pathParam("bid");
+			RequestPojo fetchedRequest = requestService.fetchARequest(Integer.parseInt(reqId));
+			ctx.json(fetchedRequest);
+		});
+				
 		// addRequest
 		myServer.post("/api/requests", ctx -> {
 			RequestPojo newRequest = ctx.bodyAsClass(RequestPojo.class);

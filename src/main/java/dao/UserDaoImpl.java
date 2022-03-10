@@ -28,7 +28,7 @@ public class UserDaoImpl implements UserDao {
 				userpojo.setUsername(rs.getString(2));
 				userpojo.setFullName(rs.getString(4));
 				userpojo.setEmail(rs.getString(5));
-				userpojo.setRole_id(6);
+				userpojo.setRole_id(rs.getInt(6));
 				allEmployees.add(userpojo);
 			}
 		} catch (SQLException e) {
@@ -88,11 +88,12 @@ public class UserDaoImpl implements UserDao {
 		Connection conn = DBUtil.obtainConnection();
 
 		try {
-			String sql = "SELECT * FROM users WHERE username = ? and password = ?";
+			String sql = "SELECT * FROM users WHERE username = ? and password = ? and role_id = ?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getPassword());
+			ps.setInt(3, user.getRole_id());
 			
 			ResultSet rs = ps.executeQuery();
 			while (rs.next()) {
@@ -104,10 +105,10 @@ public class UserDaoImpl implements UserDao {
 						rs.getInt("role_id"));
 			}
 		} catch (Exception ex) {
-
+			
 		}
 		
-
+		System.out.println(userInfo);
 		return userInfo;
 	}
 

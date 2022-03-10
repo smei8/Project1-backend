@@ -42,8 +42,8 @@ public class RequestDaoImpl implements RequestDao {
 
 		try {
 			Statement stmt = conn.createStatement();
-			String query = "INSERT INTO request_details(user_id, type, request_amount, status) VALUES("
-					+ requestPojo.getuserId() + "," + requestPojo.getReqType() + "," + requestPojo.getReqAmount()+",1) RETURNING req_id";
+			String query = "INSERT INTO request_details(user_id, type, request_amount, manager, status) VALUES("
+					+ requestPojo.getuserId() + "," + requestPojo.getReqType() + "," + requestPojo.getReqAmount()+","+ requestPojo.getManager() +",1) RETURNING req_id";
 			
 			ResultSet rs = stmt.executeQuery(query);
 			if (rs.next()) {
@@ -141,7 +141,7 @@ public class RequestDaoImpl implements RequestDao {
 			while(itr.hasNext()) {
 				reqPojo = itr.next();
 				if(reqPojo.getReqId() == reqId) {
-					String query1 = "UPDATE request_details SET status="+status+"WHERE req_id="+reqId;
+					String query1 = "UPDATE request_details SET status="+status+", approve_date=CURRENT_DATE WHERE req_id="+reqId;
 					int row1 = stmt.executeUpdate(query1);
 					reqPojo.setReqStatus(status);
 					break;
