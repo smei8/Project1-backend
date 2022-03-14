@@ -2,21 +2,24 @@ package service;
 
 import java.util.List;
 
+import exception.SystemException;
 import pojo.RequestPojo;
 
 public interface RequestService {
 	//view all request doesnt matter of the status
-	List<RequestPojo> viewAllRequest();
+	List<RequestPojo> viewAllRequest() throws SystemException;
 	
-	RequestPojo addRequest(RequestPojo requestPojo);
+	List<RequestPojo> viewAllEpRequest(int userId) throws SystemException;
+	
+	RequestPojo addRequest(RequestPojo requestPojo) throws SystemException;
 	
 	//view pending request
-	List<RequestPojo> viewPendingRequest();
+	List<RequestPojo> viewPendingRequest() throws SystemException;
 	
 	//manage to review and either approve, denied the request
-	RequestPojo reviewRequest(int reqId, int status);
+	RequestPojo reviewRequest(RequestPojo requestPojo) throws SystemException;
 	
-	RequestPojo fetchARequest(int reqId);
+	RequestPojo fetchARequest(int reqId) throws SystemException;
 	
-	RequestPojo deleteRequest(int reqId);
+	RequestPojo deleteRequest(int reqId) throws SystemException;
 }

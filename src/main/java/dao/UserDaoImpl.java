@@ -8,12 +8,19 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import pojo.UserPojo;
 
 public class UserDaoImpl implements UserDao {
+	
+	public static final Logger LOG = LogManager.getLogger(UserDaoImpl.class);
 
 	@Override
 	public List<UserPojo> fetchAllAccounts() {
+		LOG.info("Entered fetchAllAccounts() in DAO");
+
 		List<UserPojo> allEmployees  = new ArrayList<UserPojo>();
 		Connection conn = DBUtil.obtainConnection();	
 
@@ -35,11 +42,14 @@ public class UserDaoImpl implements UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		LOG.info("Exited fetchAllAccounts() in DAO");
 		return allEmployees;
 	}
 
 	@Override
 	public UserPojo fetchAAccount(int userId) {
+		LOG.info("Entered fetchAAccount() in DAO");
+
 		UserPojo userpojo = null;
 		Connection conn = DBUtil.obtainConnection();
 
@@ -61,12 +71,14 @@ public class UserDaoImpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+		LOG.info("Exited fetchAAccount() in DAO");
 		return userpojo;
 	}
 
 	@Override
 	public UserPojo updateAccount(UserPojo userpojo) {
+		LOG.info("Entered updateAccount() in DAO");
+
 		Connection conn = DBUtil.obtainConnection();
 		
 		try {
@@ -77,20 +89,21 @@ public class UserDaoImpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
+		LOG.info("Exited updateAccount() in DAO");
 		return userpojo;
 	}
 
 	@Override
 	public UserPojo login(UserPojo user) {
-		
+		LOG.info("Entered login() in DAO");
+
 		UserPojo userInfo = new UserPojo();
 		Connection conn = DBUtil.obtainConnection();
 
+		String sql = "SELECT * FROM users WHERE username = ? and password = ? and role_id = ?";
+		PreparedStatement ps;
 		try {
-			String sql = "SELECT * FROM users WHERE username = ? and password = ? and role_id = ?";
-			PreparedStatement ps = conn.prepareStatement(sql);
-			
+			ps = conn.prepareStatement(sql);
 			ps.setString(1, user.getUsername());
 			ps.setString(2, user.getPassword());
 			ps.setInt(3, user.getRole_id());
@@ -104,11 +117,11 @@ public class UserDaoImpl implements UserDao {
 						rs.getString("email"), 
 						rs.getInt("role_id"));
 			}
-		} catch (Exception ex) {
-			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		
-		System.out.println(userInfo);
+		LOG.info("Exited login() in DAO");
 		return userInfo;
 	}
 

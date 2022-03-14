@@ -11,7 +11,7 @@ public class UserServiceImpl implements UserService {
 	UserDao userDao;
 	
 
-	public UserServiceImpl() {
+	public UserServiceImpl(){
 		userDao = new UserDaoImpl();
 	}
 

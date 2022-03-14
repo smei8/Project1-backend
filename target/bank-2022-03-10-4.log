@@ -1,0 +1,15 @@
+11/Mar/2022 11:49:03,980- RequestDaoImpl: Entered viewAllRequest() in DAO
+11/Mar/2022 11:49:03,997- RequestDaoImpl: Exited viewAllRequest() in DAO
+11/Mar/2022 11:53:13,867- UserDaoImpl: Entered login() in DAO
+11/Mar/2022 11:53:13,869- UserDaoImpl: Exited login() in DAO
+11/Mar/2022 11:53:13,898- UserDaoImpl: Entered fetchAAccount() in DAO
+11/Mar/2022 11:53:13,900- UserDaoImpl: Exited fetchAAccount() in DAO
+11/Mar/2022 11:53:18,156- UserDaoImpl: Entered fetchAllAccounts() in DAO
+11/Mar/2022 11:53:18,158- UserDaoImpl: Exited fetchAllAccounts() in DAO
+11/Mar/2022 11:53:19,244- RequestDaoImpl: Entered viewAllRequest() in DAO
+11/Mar/2022 11:53:19,249- RequestDaoImpl: Exited viewAllRequest() in DAO
+11/Mar/2022 11:53:19,259- RequestDaoImpl: Entered viewAllRequest() in DAO
+11/Mar/2022 11:53:19,262- RequestDaoImpl: Exited viewAllRequest() in DAO
+11/Mar/2022 11:54:34,869- UserDaoImpl: Entered login() in DAO
+11/Mar/2022 11:54:34,870- UserDaoImpl: Exited login() in DAO
+11/Mar/2022 11:54:34,900- UserDaoImpl: Entered fetchAAccount() in DAO

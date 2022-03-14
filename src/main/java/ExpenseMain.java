@@ -1,5 +1,10 @@
-import java.util.List;
 
+import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import exception.SystemException;
 import io.javalin.Javalin;
 
 import pojo.RequestPojo;
@@ -9,11 +14,13 @@ import service.RequestServiceImpl;
 import service.UserService;
 import service.UserServiceImpl;
 
+
 public class ExpenseMain {
 
 	public static void main(String[] args) {
-		RequestService requestService = new RequestServiceImpl();
 		UserService userService = new UserServiceImpl();
+		RequestService requestService = new RequestServiceImpl();
+		
 		
 		Javalin myServer = Javalin.create((config) -> config.enableCorsForAllOrigins()).start(4040);
 		
@@ -57,6 +64,13 @@ public class ExpenseMain {
 			ctx.json(allRequests); 
 		});
 		
+		//fetch all emp request
+		myServer.get("/api/epRequests/{bid}", ctx -> {
+			String userId = ctx.pathParam("bid");
+			List<RequestPojo> allEpRequest = requestService.viewAllEpRequest(Integer.parseInt(userId));
+			ctx.json(allEpRequest);
+		});
+		
 		// fetchARequest
 		myServer.get("/api/requests/{bid}", ctx -> {
 			String reqId = ctx.pathParam("bid");
@@ -78,11 +92,11 @@ public class ExpenseMain {
 		});
 		
 		// reviewRequest
-		myServer.put("/api/requests/{bid1}/{bid2}", ctx -> { //1-reqID 2-status
-			//RequestPojo updateStatus = ctx.bodyAsClass(RequestPojo.class);
-			String reqId = ctx.pathParam("bid1"); //reqID
-			String status = ctx.pathParam("bid2"); //status
-			RequestPojo returnedUpdatedRequest = requestService.reviewRequest(Integer.parseInt(reqId), Integer.parseInt(status));
+		myServer.put("/api/requests", ctx -> { //1-reqID 2-status
+			RequestPojo updateStatus = ctx.bodyAsClass(RequestPojo.class);
+//			String reqId = ctx.pathParam("bid1"); //reqID
+//			String reqStatus = ctx.pathParam("bid2"); //status
+			RequestPojo returnedUpdatedRequest = requestService.reviewRequest(updateStatus);
 			ctx.json(returnedUpdatedRequest);
 		});
 		
@@ -91,6 +105,13 @@ public class ExpenseMain {
 			String reqId = ctx.pathParam("bid");
 			RequestPojo deletedRequest = requestService.deleteRequest(Integer.parseInt(reqId));
 			ctx.json(deletedRequest);
+		});
+		
+		myServer.exception(SystemException.class, (se, ctx) -> {
+			Map<String, String> error = new HashMap<String, String>();
+			error.put("message", se.getMessage());
+			error.put("datetime", LocalDateTime.now()+"");
+			ctx.json(error);
 		});
 	}
 
